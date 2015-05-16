@@ -4,10 +4,19 @@ output:
   html_document:
     keep_md: true
 ---
-
+setwd("~/datasciencecoursera/RepData_PeerAssessment1")
 
 ## Loading and preprocessing the data
-
+```{r code, echo=TRUE}
+activity <- read.csv("/Users/tgjoen/datasciencecoursera/RepData_PeerAssessment1/activity.csv", header=TRUE)
+attach(activity)
+names(activity)
+total_steps<-aggregate(activity[1],by=activity[2], FUN=sum, na.rm=TRUE)
+#total_steps<-tapply(activity[1],date, sum, na.rm=TRUE)
+hist(total_steps$steps, breaks=20,main="Histogram of total number of steps per day",xlab="Steps per day")
+mean_day<-mean(total_steps)
+median_day<-median(total_steps)
+```
 
 
 ## What is mean total number of steps taken per day?
